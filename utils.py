@@ -15,6 +15,7 @@ horarios = [
 
 
 def asigna_horario(data):
+  # Importante que el nombre de la columna sea IGUAL a como está en el DataFrame. En este caso "Comuna" y "LATITUD"
   comuna=data["Comuna"]
   latitud=data["LATITUD"]
 
@@ -49,10 +50,12 @@ def geo_data():
   })
 
   # Limpiar los datos, Eliminando los registros sin Comuna
+  # Inplace indica que haga la modificación (en este caso eliminación) en este mismo DataFrame. No se alteran los DataFrames anteriores.
   geo_data_comuna.dropna(subset=["Comuna"], inplace=True)
 
   # Asignar valores de horarios a la columna de Horario,
   # para esto se aplica una lógica usando todas las columnas de cada registro
+  # Recordar **Axis** es **Eje**, 1 Corresponde a las Columnas de Datos/Registros (y 0 a los índices)
   geo_data_comuna["Horario"] = geo_data_comuna.apply(asigna_horario, axis=1)
 
   return geo_data_comuna

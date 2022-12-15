@@ -15,8 +15,10 @@ horarios_puntos = data_puntos["Horario"].sort_values().unique()
 # Generar listado de comunas ordenadas
 comunas_puntos = data_puntos["Comuna"].sort_values().unique()
 
+# Creación de SideBar
 with st.sidebar:
   st.write("##### Filtros de Información")
+  # Creación de línea completa o en el caso def SB una línea de división
   st.write("---")
 
   # Multiselector de comunas
@@ -77,6 +79,7 @@ else:
           get_fill_color=["Horario == '08:30 - 18:30' ? 255 : 10", "Horario == '08:30 - 18:30' ? 0 : 200", 90, 200]
         )      
       ],
+      # dar acceso a la fila que correspodne al punto donde me estoy posicionando
       tooltip={
         "html": "<b>Negocio: </b> {Negocio} <br /> "
                 "<b>Dirección: </b> {Dirección} <br /> "
